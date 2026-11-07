@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#211418">
+<title>Vote for Our Next Read — The Forbidden Case</title>
+<link rel="icon" href="images/emblem.svg" type="image/svg+xml">
+<script src="content.js" defer></script>
+<style>
+:root{color-scheme:dark;--cream:#f0e3d0;--muted:#c7b5a1;--gold:#caaa75;--green:#1a3b2d;--burgundy:#702d40}*{box-sizing:border-box}body{margin:0;background:#160f12;color:var(--cream);font:16px/1.6 system-ui,sans-serif}a{color:var(--gold);text-underline-offset:4px}.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:18px max(20px,5vw);background:#211418;border-bottom:1px solid #594031}.brand{font:25px Georgia,serif;text-decoration:none}.topbar nav{display:flex;flex-wrap:wrap;gap:20px;font-size:14px}main{max-width:1100px;margin:36px auto;padding:0 22px}.hero{padding:28px;border:1px solid #68513d;border-radius:10px;background:linear-gradient(115deg,#4b2330,#173a2b)}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--gold)}h1{font:normal clamp(30px,5vw,44px)/1.2 Georgia,serif;margin:10px 0}h2{font:normal 23px/1.3 Georgia,serif;margin:14px 0 6px}p{margin:10px 0}.notice{padding:14px 0;color:var(--muted);font-size:14px}.choices{display:flex;flex-wrap:wrap;gap:22px;margin:20px 0}.book{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 20px;background:#251a1d;border:1px solid #564035;border-radius:10px}.cover{display:block;max-width:100%;width:160px;height:240px;object-fit:contain}.author{color:var(--muted);font-size:14px;margin:0 0 15px}.count{color:var(--gold);margin-top:auto;padding-top:15px;font-size:14px}.vote{font:inherit;background:var(--burgundy);color:var(--cream);border:1px solid #a5676e;border-radius:6px;padding:12px 18px;min-height:46px;width:100%;margin-top:12px;cursor:pointer}.vote[aria-pressed=true]{background:var(--green);border-color:var(--gold)}.vote:disabled{opacity:.65;cursor:default}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.footer{text-align:center;padding:24px;color:var(--muted);font-size:12px}.count-note{font-size:13px;color:var(--muted)}@media(max-width:600px){main{margin-top:20px;padding:0 14px}.hero{padding:22px}.book{flex-basis:100%}.topbar{padding:16px}.topbar nav{gap:16px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">⚔ The Forbidden Case</a><nav aria-label="Club navigation"><a href="index.html">Bookshelf</a><a href="events.html">Events</a><a href="tavern.html">Tavern</a><a href="fan-art.html">Fan Art</a></nav></header>
+<main>
+<!-- EDIT THIS PAGE: headings and introductory copy. Book choices come from content.js. -->
+<section class="hero"><p class="eyebrow">OUR NEXT ADVENTURE</p><h1>Vote for our next read</h1><p>Which world should we explore together? Choose your favorite upcoming book.</p><p class="count-note">One choice per member for the next selection. You can change your vote.</p></section>
+<p id="status" class="notice" role="status">Loading book choices…</p>
+<div id="membership" class="notice" hidden></div>
+<section id="choices" class="choices" aria-label="Upcoming books and voting"></section>
+<p class="count-note">Members purchase or borrow their own books.</p>
+</main>
+<footer class="footer">© <span id="year"></span> The Forbidden Case · <a href="rules.html">Club rules & privacy</a></footer>
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded',()=>{
+ const choices=document.querySelector('#choices'),status=document.querySelector('#status'),membership=document.querySelector('#membership');let config=window.CLUB_CONTENT,session=null,totals={},selected=null,allowed=false,busy=false;
+ document.querySelector('#year').textContent=new Date().getFullYear();
+ function element(tag,text,cls){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;}
+ async function api(path,method='GET',body){const response=await fetch('/api/'+path,{method,credentials:'same-origin',headers:method==='GET'?{}:{'Content-Type':'application/json','X-CSRF-Token':session.csrf},body:body===undefined?undefined:JSON.stringify(body)});const data=await response.json();if(!response.ok)throw Error(data.error||'Please try again.');return data;}
+ function render(){
+  choices.replaceChildren();
+  for(const book of config?.upcoming||[]){const card=element('article',undefined,'book');const path=book.cover||'';
+   if((/^images\//.test(path)&&!path.includes('..'))||/^https:\/\//.test(path)){const image=element('img',undefined,'cover');image.src=path;image.alt='Cover of '+book.title;card.append(image);}
+   card.append(element('h2',book.title),element('p',book.author,'author'));const count=element('p',allowed?(totals[book.id]||0)+' club votes':'Sign in to vote','count');const button=element('button',selected===book.id?'✓ Your current choice':'Choose this book','vote');button.type='button';button.setAttribute('aria-pressed',String(selected===book.id));button.disabled=!allowed||busy;
+   button.onclick=async()=>{if(!allowed||busy)return;busy=true;render();try{await api('vote','PUT',{bookId:config.current.id,choice:book.id});await syncVotes();status.textContent='Your vote is saved. You can choose a different book anytime.';}catch(error){status.textContent=error.message;}finally{busy=false;render();}};
+   card.append(count,button);choices.append(card);
+  }
+  if(!config?.upcoming?.length)choices.append(element('p','No upcoming books have been announced yet.'));
+ }
+ async function syncVotes(){const state=await api('state');totals=state.totals||{};selected=state.reader?.votes?.[config.current.id]||null;}
+ function signInNotice(text){membership.hidden=false;membership.replaceChildren(element('span',text+' '));const a=element('a','Member sign in');a.href='sign-in.html?next=upcoming';membership.append(a);}
+ (async()=>{render();if(!config){status.textContent='Could not load content.js. Keep this file beside index.html and content.js.';return;}
+  if(!window.CLUB_SERVER){status.textContent='Local design preview · Book choices are shown below.';membership.hidden=false;membership.textContent='Voting and live totals require the included Python member server.';return;}
+  try{session=await api('me');const fresh=await api('config');config=fresh.config;allowed=!!session.user&&(session.user.role==='owner'||session.user.status==='active');if(allowed){await syncVotes();status.textContent='Your club’s upcoming books. Choose one below.';setInterval(async()=>{if(document.hidden||busy)return;try{await syncVotes();render();}catch{}},20000);}else{status.textContent='Explore the choices below.';signInNotice(session.user?'Your membership is awaiting owner approval.':'Sign in as an approved club member to vote.');}render();}catch(error){status.textContent='Could not connect to the member server. '+error.message;render();}
+ })();
+});
+</script>
+</body></html>

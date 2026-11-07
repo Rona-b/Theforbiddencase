@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Phone & Tablet Preview — The Forbidden Case</title>
+    <link rel="icon" href="images/emblem.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: system-ui, sans-serif;
+        background: #130e10;
+        color: #f3e5d2;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      header {
+        max-width: 1200px;
+        margin: auto;
+        padding: 22px 24px 14px;
+      }
+      h1 {
+        font:
+          normal clamp(24px, 4vw, 34px) Georgia,
+          serif;
+        margin: 0 0 8px;
+        color: #e9c99a;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 8px 0;
+        color: #d1beb0;
+      }
+      a {
+        color: #e9c99a;
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 12px;
+        margin: 18px 0 12px;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 12px;
+        color: #dac4ad;
+      }
+      select,
+      button {
+        font: inherit;
+        background: #28201f;
+        color: #f5eadb;
+        border: 1px solid #79604e;
+        border-radius: 6px;
+        padding: 10px 12px;
+        min-height: 44px;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:hover {
+        background: #623040;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #edc881;
+        outline-offset: 3px;
+      }
+      #device {
+        min-width: 185px;
+      }
+      #page {
+        min-width: 185px;
+      }
+      #measure {
+        font-size: 13px;
+        color: #efce9b;
+        min-height: 20px;
+      }
+      .stage {
+        height: calc(100dvh - 285px);
+        min-height: 400px;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+        background: radial-gradient(ellipse at top, #3a252c, #0b090a);
+        border-top: 1px solid #5a4143;
+        border-bottom: 1px solid #5a4143;
+      }
+      .device-space {
+        position: relative;
+        flex: none;
+      }
+      .device-case {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 12px solid #272126;
+        border-radius: 22px;
+        box-shadow: 0 12px 40px #000b;
+        transform-origin: top left;
+        background: #110c09;
+        overflow: hidden;
+      }
+      iframe {
+        display: block;
+        border: 0;
+        background: #110c09;
+      }
+      footer {
+        max-width: 1200px;
+        padding: 12px 24px 24px;
+        margin: auto;
+      }
+      footer p {
+        font-size: 12px;
+      }
+      strong {
+        color: #f0d4ae;
+      }
+      @media (max-width: 600px) {
+        header {
+          padding: 16px;
+        }
+        .toolbar {
+          gap: 8px;
+        }
+        select {
+          max-width: 100%;
+        }
+        label {
+          flex: 1 1 160px;
+        }
+        .stage {
+          height: 65dvh;
+          padding: 12px;
+        }
+        footer {
+          padding: 12px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>⚔ Phone & Tablet Preview</h1>
+      <p>
+        Your actual website, at a phone or tablet screen width. Nothing needs to
+        be uploaded.
+      </p>
+      <div class="toolbar">
+        <label
+          >Screen size<select id="device">
+            <option value="320,740">Small phone · 320 × 740</option>
+            <option value="390,844" selected>Phone · 390 × 844</option>
+            <option value="430,932">Large phone · 430 × 932</option>
+            <option value="768,1024">Tablet · 768 × 1024</option>
+            <option value="1024,1366">Large tablet · 1024 × 1366</option>
+            <option value="1536,960">Desktop · 1536 × 960</option>
+          </select></label
+        >
+        <label
+          >Website page<select id="page">
+            <option value="index.html">Bookshelf home</option>
+            <option value="current-read.html">Current read</option>
+            <option value="upcoming-books.html">Upcoming books</option>
+            <option value="announcements.html">Announcements</option>
+            <option value="events.html">Events</option>
+            <option value="shop.html">Book Club Shop</option>
+            <option value="about.html">About our club</option>
+            <option value="rules.html">Club rules & privacy</option>
+            <option value="tavern.html">Tavern</option>
+            <option value="fan-art.html">Fan Art</option>
+            <option value="discussions.html">Discussions</option>
+            <option value="members.html">Members</option>
+            <option value="polls.html">Book polls</option>
+            <option value="profile.html">My profile</option>
+            <option value="sign-in.html">Member sign in</option>
+            <option value="search.html">Search</option>
+            <option value="admin.html">Manage membership</option>
+          </select></label
+        >
+        <label
+          >Display size<select id="zoom">
+            <option value="fit">Fit on my screen</option>
+            <option value="actual">Actual size · 100%</option>
+          </select></label
+        >
+        <button id="rotate" type="button">Rotate ↻</button
+        ><button id="refresh" type="button">Refresh preview</button>
+      </div>
+      <div id="measure" role="status" aria-live="polite"></div>
+    </header>
+    <main class="stage" id="stage" aria-label="Device preview area">
+      <div class="device-space" id="space">
+        <div class="device-case" id="case">
+          <iframe
+            id="preview"
+            title="Your website at the selected device size"
+            src="index.html"
+            width="390"
+            height="844"
+          ></iframe>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        <strong>Scroll inside the device</strong> to see all shelves. Click its
+        books and buttons to test navigation. After saving edits in VS Code,
+        select <strong>Refresh preview</strong>.
+      </p>
+      <p>
+        Public pages work from this downloaded folder. For real sign-in, chat,
+        and uploads, start your included member server and open
+        <a href="http://127.0.0.1:8000/PREVIEW-MOBILE.html"
+          >http://127.0.0.1:8000/PREVIEW-MOBILE.html</a
+        >. This previews screen layout; an actual device may render fonts and
+        touch controls differently.
+      </p>
+    </footer>
+    <script>
+      "use strict";
+      const device = document.querySelector("#device"),
+        page = document.querySelector("#page"),
+        zoom = document.querySelector("#zoom"),
+        frame = document.querySelector("#preview"),
+        stage = document.querySelector("#stage"),
+        space = document.querySelector("#space"),
+        shell = document.querySelector("#case"),
+        measure = document.querySelector("#measure");
+      let rotated = false;
+      function resizePreview() {
+        let [width, height] = device.value.split(",").map(Number);
+        if (rotated) [width, height] = [height, width];
+        const css = getComputedStyle(stage),
+          availableWidth =
+            stage.clientWidth -
+            parseFloat(css.paddingLeft) -
+            parseFloat(css.paddingRight),
+          availableHeight =
+            stage.clientHeight -
+            parseFloat(css.paddingTop) -
+            parseFloat(css.paddingBottom);
+        const scale =
+          zoom.value === "actual"
+            ? 1
+            : Math.min(
+                1,
+                Math.max(100, availableWidth) / (width + 24),
+                Math.max(100, availableHeight) / (height + 24)
+              );
+        frame.width = width;
+        frame.height = height;
+        frame.style.width = width + "px";
+        frame.style.height = height + "px";
+        shell.style.width = width + 24 + "px";
+        shell.style.height = height + 24 + "px";
+        shell.style.transform = "scale(" + scale + ")";
+        space.style.width = (width + 24) * scale + "px";
+        space.style.height = (height + 24) * scale + "px";
+        stage.style.justifyContent =
+          availableWidth < (width + 24) * scale ? "flex-start" : "center";
+        measure.textContent =
+          width +
+          " × " +
+          height +
+          " CSS pixels · " +
+          (width > height ? "Landscape" : "Portrait") +
+          " · Displayed at " +
+          Math.round(scale * 100) +
+          "%";
+      }
+      device.addEventListener("change", () => {
+        rotated = false;
+        resizePreview();
+      });
+      zoom.addEventListener("change", resizePreview);
+      document.querySelector("#rotate").addEventListener("click", () => {
+        rotated = !rotated;
+        resizePreview();
+      });
+      page.addEventListener("change", () => {
+        frame.src = page.value;
+      });
+      document.querySelector("#refresh").addEventListener("click", () => {
+        try {
+          const current = frame.contentWindow.location.href;
+          const u = new URL(current);
+          if (
+            [...page.options].some((o) => u.pathname.endsWith("/" + o.value))
+          ) {
+            frame.contentWindow.location.reload();
+            return;
+          }
+        } catch {}
+        frame.src = page.value;
+      });
+      frame.addEventListener("load", () => {
+        try {
+          const path = new URL(frame.contentWindow.location.href).pathname;
+          const option = [...page.options].find((o) =>
+            path.endsWith("/" + o.value)
+          );
+          if (option) page.value = option.value;
+        } catch {}
+        resizePreview();
+      });
+      window.addEventListener("resize", resizePreview);
+      if (window.ResizeObserver)
+        new ResizeObserver(resizePreview).observe(stage);
+      resizePreview();
+    </script>
+  </body>
+</html>

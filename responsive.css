@@ -1,0 +1,508 @@
+/* Phones and tablets only. Desktop bookshelf rules remain in styles.css.
+   Portrait monthly artwork is used as a nine-slice frame: corners keep their
+   proportions while the shelves grow naturally with real HTML content. */
+@media (max-width: 1100px) {
+  html {
+    overflow-x: clip;
+  }
+  body {
+    min-width: 280px;
+  }
+  .library {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: auto;
+    overflow: visible;
+    background: #21130d;
+    border: 0;
+  }
+  .masthead,
+  .book-nav,
+  .middle-shelf,
+  .lower-shelf {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    box-shadow: none;
+  }
+  .masthead {
+    display: flex;
+    justify-content: flex-end;
+    aspect-ratio: 1024/450;
+    min-height: 165px;
+    padding: 60px 12% 26px;
+    border: 0;
+    background-image: var(
+      --mobile-shelf-image,
+      url("images/mobile-monthly/01-january.png")
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+  }
+  .masthead h1 {
+    font-size: clamp(22px, 5vw, 40px);
+    line-height: 1.08;
+    overflow-wrap: normal;
+  }
+  .masthead > p:not(.overline) {
+    font-size: clamp(10px, 1.6vw, 14px);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    margin: 7px 0 0;
+  }
+  .book-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 14px 12px;
+    padding: 18px 7% 25px;
+    background: linear-gradient(90deg, #160d09, #352014 50%, #160d09);
+    border: 0;
+    border-bottom: 12px ridge #694528;
+  }
+  .nav-book,
+  .nav-book:nth-child(even) {
+    flex: 0 1 calc(25% - 9px);
+    height: auto;
+    aspect-ratio: 2/3;
+    min-width: 0;
+    max-width: 145px;
+    min-height: 0;
+  }
+  .middle-shelf,
+  .lower-shelf {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+  .current-panel,
+  .parchment,
+  .lower-shelf > article {
+    flex: none;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 26px max(24px, 7%);
+    background: linear-gradient(90deg, #25150f, #372114 48%, #25150f);
+    border-style: solid;
+    border-color: #624026;
+    border-width: 0 12px 12px;
+    border-bottom-style: ridge;
+    border-radius: 0;
+    box-shadow:
+      inset 8px 0 12px #0006,
+      inset -8px 0 12px #0006;
+    overflow: visible;
+  }
+  /* Real artwork frames the entire case; it is never stretched across the content. */
+  .library {
+    border-style: solid;
+    border-width: 0 10px 28px;
+    border-image-source: var(
+      --mobile-shelf-image,
+      url("images/mobile-monthly/01-january.png")
+    );
+    border-image-slice: 340 38 200 38;
+    border-image-width: 0 10px 28px;
+    border-image-repeat: stretch;
+  }
+  .current-panel > .section-heading {
+    display: flex;
+  }
+  .current-layout {
+    display: flex;
+    height: auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .cover-button {
+    flex: 0 0 160px;
+    width: 160px;
+    height: auto;
+    max-width: 40%;
+    margin: 0;
+  }
+  .cover-button .book-cover,
+  .upcoming-item .book-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
+  }
+  .book-cover.actual .uploaded-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 2/3;
+    object-fit: contain;
+  }
+  .current-copy {
+    flex: 1;
+    min-width: 0;
+    height: auto;
+    overflow: visible;
+  }
+  .current-copy .overline {
+    display: block;
+    font-size: 10px;
+  }
+  .current-copy h3 {
+    display: block;
+    font-size: clamp(25px, 4vw, 34px);
+    line-height: 1.15;
+    margin: 6px 0;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+  .current-copy .author {
+    font-size: 15px;
+    margin: 8px 0;
+  }
+  .current-copy > p:not(.overline):not(.author) {
+    display: block;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    margin: 8px 0;
+  }
+  .current-copy .reading-label {
+    font-size: 12px !important;
+  }
+  .current-copy .actions {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0 0;
+  }
+  .current-copy .actions button {
+    font-size: 14px;
+    padding: 12px 14px;
+    min-height: 44px;
+    white-space: normal;
+  }
+  .parchment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--cream);
+    transform: none;
+  }
+  .parchment h2 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .parchment h3 {
+    font-size: 21px;
+    margin: 10px 0 0;
+  }
+  .parchment ul {
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
+    padding-left: 20px;
+  }
+  .parchment li {
+    white-space: normal;
+    overflow: visible;
+    margin: 7px 0;
+  }
+  .parchment .paper-button {
+    font-size: 14px;
+    color: var(--cream);
+    min-height: 44px;
+    padding: 10px 0;
+  }
+  .announcement-link {
+    min-height: 44px;
+    color: inherit;
+  }
+  .section-heading {
+    gap: 9px;
+    margin: 0 0 22px;
+  }
+  .section-heading h2 {
+    font-size: clamp(23px, 4vw, 29px);
+    line-height: 1.2;
+    text-align: center;
+  }
+  .section-heading > span {
+    font-size: 12px;
+  }
+  .upcoming-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px 20px;
+    height: auto;
+    margin-bottom: 24px;
+  }
+  .upcoming-item {
+    flex: 0 1 calc(33.333% - 14px);
+    height: auto;
+    min-width: 0;
+    max-width: 180px;
+  }
+  .upcoming-item button {
+    height: auto;
+  }
+  .upcoming-item h3,
+  .upcoming-item p {
+    display: block;
+  }
+  .upcoming-item h3 {
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 12px 0 4px;
+  }
+  .upcoming-item p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .upcoming-panel > .outline {
+    min-height: 44px;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+  .community {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .community > button {
+    width: 100%;
+    font-size: 15px;
+    min-height: 48px;
+    padding: 13px 14px;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .tavern-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .tavern-image-slot {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    flex: none;
+  }
+  .tavern-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 0;
+  }
+  .tavern-panel h2 {
+    font-size: 29px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .tavern-panel p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .tavern-panel .primary {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 12px 18px;
+  }
+  .utility {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+  }
+  .utility > span {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .utility > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .utility button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  footer {
+    padding: 20px 16px;
+  }
+  footer .outline {
+    min-height: 44px;
+  }
+  /* Reader pages and forms remain usable at the same device sizes. */
+  dialog,
+  .page-room {
+    max-width: calc(100% - 20px);
+  }
+  dialog input,
+  dialog textarea,
+  dialog select {
+    font-size: 16px;
+  }
+  dialog button,
+  dialog .primary,
+  dialog .outline {
+    min-height: 44px;
+  }
+  .room-current {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .room-current > div:first-child {
+    flex: 0 0 130px;
+    max-width: 100%;
+  }
+  .room-current > div:last-child {
+    flex: 1 1 200px;
+    min-width: 0;
+  }
+  .room-current .book-cover {
+    width: 130px;
+    max-width: 100%;
+  }
+  .field-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .field-row > div {
+    flex: 1 1 200px;
+    min-width: 0;
+  }
+  .shared-media {
+    max-width: 100%;
+    height: auto;
+  }
+  .chat-log {
+    width: 100%;
+    min-width: 0;
+  }
+  .card,
+  .post-text {
+    overflow-wrap: anywhere;
+  }
+  .media-toolbar {
+    gap: 8px;
+  }
+  .media-toolbar button {
+    flex: 1 1 110px;
+  }
+  .page-room h1 {
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 767px) {
+  .nav-book,
+  .nav-book:nth-child(even) {
+    flex-basis: calc(33.333% - 8px);
+    max-width: 132px;
+  }
+  .current-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cover-button {
+    flex: none;
+    width: 165px;
+    max-width: 65%;
+  }
+  .current-copy {
+    flex: none;
+    width: 100%;
+  }
+  .current-copy h3,
+  .current-copy .author {
+    text-align: center;
+  }
+  .current-copy .actions {
+    justify-content: center;
+  }
+  .upcoming-item {
+    flex: 0 1 calc(50% - 10px);
+    max-width: 165px;
+  }
+  .current-panel,
+  .parchment,
+  .lower-shelf > article {
+    padding: 25px 20px;
+  }
+  .masthead {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .masthead h1 {
+    font-size: clamp(22px, 5.7vw, 36px);
+  }
+}
+@media (max-width: 359px) {
+  .nav-book,
+  .nav-book:nth-child(even) {
+    flex-basis: calc(50% - 6px);
+    max-width: 118px;
+  }
+  .upcoming-item {
+    flex-basis: 100%;
+    max-width: 165px;
+  }
+  .current-panel,
+  .parchment,
+  .lower-shelf > article {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+/* Override the older short-screen rule for fifth/seventh navigation books. */
+@media (max-width: 1100px) {
+  .nav-book:nth-child(n) {
+    height: auto;
+    aspect-ratio: 2/3;
+  }
+}
+
+/* Keyboard navigation, landscape keyboards, and long shared content. */
+@media (max-width: 1100px) {
+  .page-room :is(input, textarea, select) {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .page-room a,
+  .page-room p,
+  .local-notice {
+    overflow-wrap: anywhere;
+  }
+  .chat-message video,
+  .chat-message img {
+    max-width: 100%;
+  }
+  .page-back {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+@media (max-width: 1100px) and (max-height: 500px) {
+  dialog:not(.page-room) {
+    max-height: calc(100dvh - 16px);
+  }
+}

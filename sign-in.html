@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#1e100b" />
+    <title>The Forbidden Case — Fantasy Book Club</title>
+    <link rel="icon" href="images/emblem.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <!-- Load your editable content first, then the website functionality. -->
+    <script src="navigation.js" defer></script>
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="members.js" defer></script>
+    <script src="club.js" defer></script>
+    <script src="pages.js" defer></script>
+  </head>
+  <body data-page="login">
+    <a class="skip" href="#current-read">Skip to current book</a>
+    <div class="utility">
+      <span>✧ A place for stories & kindred spirits</span>
+      <div>
+        <button data-room="search">Search</button
+        ><button data-room="profile">My profile</button
+        ><button id="accountButton" data-room="login">Member sign in</button>
+      </div>
+    </div>
+    <main class="library">
+      <header class="masthead">
+        <div class="filigree" aria-hidden="true">⚔ ── ✧ ── ⚔</div>
+        <p class="overline">WELCOME TO</p>
+        <h1 id="clubName">The Forbidden Case</h1>
+        <p id="clubTagline">A fantasy romance book club</p>
+        <div class="filigree" aria-hidden="true">✧</div>
+      </header>
+      <nav class="book-nav" aria-label="Book club navigation">
+        <button class="nav-book burgundy" data-room="about">
+          <span class="nav-symbol" aria-hidden="true">✧</span
+          ><span class="nav-title">About<br />Our Club</span
+          ><small>OUR LITTLE WORLD</small>
+        </button>
+        <button class="nav-book green" data-room="upcoming">
+          <span class="nav-symbol" aria-hidden="true">▤</span
+          ><span class="nav-title">Upcoming<br />Books</span
+          ><small>VOTE FOR OUR NEXT READ</small>
+        </button>
+        <button class="nav-book burgundy" data-room="events">
+          <span class="nav-symbol" aria-hidden="true">⚔</span
+          ><span class="nav-title">Events</span><small>GATHER TOGETHER</small>
+        </button>
+        <button class="nav-book green" data-room="tavern">
+          <span class="nav-symbol" aria-hidden="true">✒</span
+          ><span class="nav-title">Discussions</span
+          ><small>JOIN THE TAVERN</small>
+        </button>
+        <button class="nav-book burgundy" data-room="art">
+          <span class="nav-symbol" aria-hidden="true">✧</span
+          ><span class="nav-title">Fan Art &amp;<br />Creations</span
+          ><small>SHARE YOUR CREATIVITY</small>
+        </button>
+        <button class="nav-book green" data-room="shop">
+          <span class="nav-symbol" aria-hidden="true">⚔</span
+          ><span class="nav-title">Book Club<br />Shop</span
+          ><small>BOOKISH TREASURES</small>
+        </button>
+      </nav>
+      <section
+        class="middle-shelf"
+        id="current-read"
+        aria-labelledby="currentHeading"
+      >
+        <article class="current-panel">
+          <div class="section-heading">
+            <span>✧</span>
+            <h2 id="currentHeading">Current Read</h2>
+            <span>✧</span>
+          </div>
+          <div class="current-layout">
+            <button
+              class="cover-button"
+              data-room="current"
+              aria-label="Open the current book"
+            >
+              <span id="currentCover"></span>
+            </button>
+            <div class="current-copy">
+              <p class="overline">ON OUR NIGHTSTANDS</p>
+              <h3 id="currentTitle"></h3>
+              <p class="author" id="currentAuthor"></p>
+              <p id="currentDescription"></p>
+              <div class="progress"><span id="homeProgress"></span></div>
+              <p class="reading-label" id="homeProgressLabel"></p>
+              <div class="actions">
+                <button class="primary" data-room="discussions">
+                  Join the discussion</button
+                ><button class="outline" data-room="current">
+                  Track my reading
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <aside class="parchment">
+          <span class="wax-seal" aria-hidden="true">⚔</span>
+          <h2>
+            <button class="announcement-link" data-room="announcements">
+              Announcements ↗
+            </button>
+          </h2>
+          <ul id="announcementList"></ul>
+          <h3>Upcoming Events</h3>
+          <ul id="homeEvents"></ul>
+          <button class="paper-button" data-room="events">
+            View our gatherings →
+          </button>
+        </aside>
+      </section>
+      <section class="lower-shelf">
+        <article class="upcoming-panel">
+          <div class="section-heading">
+            <span>✧</span>
+            <h2>Upcoming Books</h2>
+            <span>✧</span>
+          </div>
+          <div class="upcoming-grid" id="upcomingBooks"></div>
+          <button class="outline" data-room="vote">
+            Vote for our next read →
+          </button>
+        </article>
+        <article class="tavern-panel">
+          <div class="tavern-image-slot">
+            <img
+              src="images/Tavern front page 1.png"
+              alt="A cozy book tavern with books, a fireplace, and colorful potions"
+              class="tavern-image"
+            />
+          </div>
+          <h2>Join the Tavern</h2>
+          <p>
+            Chat, make friends, share theories, and find your next adventure.
+          </p>
+          <button class="primary" data-room="tavern">Enter the Tavern</button>
+        </article>
+      </section>
+    </main>
+    <dialog id="room" class="page-room" open aria-labelledby="roomTitle">
+      <a href="index.html" class="page-back" id="closeRoom"
+        >← Return to the bookshelf</a
+      >
+      <!-- EDIT THIS PAGE: change this heading, introduction, and add your own HTML here. -->
+      <h1 id="roomTitle">Member Sign In</h1>
+      <section class="page-introduction">
+        <p>Sign in or request membership with your invitation code.</p>
+      </section>
+      <!-- LIVE COMPONENT: JavaScript fills this area with member-only data. Do not insert passwords or member records in HTML. -->
+      <div id="roomContent" data-editable-html="true" aria-busy="true">
+        <!-- EDIT THESE FORMS AND LABELS. Keep IDs and data attributes for live functionality. -->
+        <p>Sign in to discuss books, vote, and save your reading progress.</p>
+        <form id="loginForm">
+          <label for="loginUsername">Username</label>
+          <input
+            id="loginUsername"
+            name="username"
+            autocomplete="username"
+            required
+            maxlength="60"
+          />
+          <label for="loginPassword">Password</label>
+          <input
+            id="loginPassword"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            maxlength="256"
+          />
+          <div class="actions">
+            <button class="primary">Sign in</button>
+          </div>
+        </form>
+        <details>
+          <summary>Join the club with an invitation code</summary>
+          <form id="registerForm">
+            <label for="joinName">Reader/display name</label>
+            <input id="joinName" name="name" maxlength="60" required />
+            <label for="joinUsername">Choose a username</label>
+            <input
+              id="joinUsername"
+              name="username"
+              autocomplete="username"
+              minlength="3"
+              maxlength="60"
+              pattern="[a-zA-Z0-9_.-]{3,60}"
+              required
+            />
+            <label for="joinPassword">Password (12 characters minimum)</label>
+            <input
+              id="joinPassword"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="12"
+              maxlength="256"
+              required
+            />
+            <label for="joinCode">Club invitation code</label>
+            <input id="joinCode" name="joinCode" maxlength="200" required />
+            <label for="joinBirthDate"
+              >Date of birth (checked, not stored)</label
+            >
+            <input id="joinBirthDate" type="date" name="birthDate" required />
+            <label class="check-label">
+              <input
+                type="checkbox"
+                name="adultConsent"
+                value="yes"
+                required
+              />I am 18 or older and agree to the 18+ membership rules and
+              privacy notice.</label
+            >
+            <p>
+              New accounts require owner approval before joining member rooms.
+            </p>
+            <div class="actions">
+              <button class="primary">Create member account</button>
+            </div>
+          </form>
+        </details>
+        <p class="meta">
+          Ask the owner for an invitation code. Contact the owner if you need an
+          account reset; automated password recovery is not included.
+        </p>
+      </div>
+    </dialog>
+    <footer>
+      <p>⚔ Where the books are forbidden &amp; the company is welcome ⚔</p>
+      <button class="outline" data-room="rules">
+        18+ Membership &amp; Privacy
+      </button>
+      <p>
+        © <span id="copyrightYear"></span> The Forbidden Case. All rights
+        reserved.
+      </p>
+    </footer>
+    <p class="local-notice" id="localNotice">
+      Local preview · Sign in through the member server to join conversations.
+    </p>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="local-notice">
+        Enable JavaScript to load your editable books and use the club rooms.
+      </p></noscript
+    >
+  </body>
+</html>

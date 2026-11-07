@@ -1,0 +1,23 @@
+# Private runtime data and credentials
+data/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.sqlite*
+*.db
+uploads/
+backups/
+# Python and tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+# Operating system/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+*.zip

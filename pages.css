@@ -1,0 +1,44 @@
+/* Every destination keeps the complete bookshelf, with its page content below. */
+body[data-page] .page-room {
+  position: relative;
+  display: block;
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  max-height: none;
+  margin: 24px auto;
+  padding: 28px;
+  background: #ead7b2;
+  color: #332215;
+  color-scheme: light;
+  border: 2px solid #8a633b;
+  border-radius: 6px;
+  overflow: visible;
+  box-shadow: 0 8px 30px #0006;
+  scroll-margin-top: 16px;
+}
+.page-room h1 {
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: normal;
+  margin: 20px 0;
+}
+.page-back {
+  display: inline-block;
+  font-size: 14px;
+  color: #58352a;
+  text-underline-offset: 4px;
+}
+.page-room .chat-log {
+  max-height: 55dvh;
+  min-height: 180px;
+}
+@media (max-width: 700px) {
+  body[data-page] .page-room {
+    padding: 20px 15px;
+    width: calc(100% - 20px);
+  }
+  .page-room input,
+  .page-room textarea,
+  .page-room select {
+    max-width: 100%;
+  }
+}

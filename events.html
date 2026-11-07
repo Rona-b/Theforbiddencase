@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211418">
+  <title>Club Events — The Forbidden Case</title>
+  <link rel="icon" href="images/emblem.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #160f12;
+      --cream: #f0e3d0;
+      --muted: #c7b5a1;
+      --gold: #caaa75;
+      --burgundy: #4b2330;
+      --green: #173a2b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      color: var(--cream);
+      font: 16px/1.6 system-ui, sans-serif;
+    }
+    a { color: var(--gold); text-underline-offset: 4px; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px max(20px, 5vw);
+      background: #211418;
+      border-bottom: 1px solid #594031;
+    }
+    .brand { font: 25px Georgia, serif; text-decoration: none; }
+    nav { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; }
+    nav a { display: inline-flex; align-items: center; min-height: 44px; }
+    main { width: 100%; max-width: 1100px; margin: 36px auto; padding: 0 22px; flex: 1; }
+    .hero {
+      padding: 28px;
+      border: 1px solid #68513d;
+      border-radius: 10px;
+      background: linear-gradient(115deg, var(--burgundy), var(--green));
+    }
+    .eyebrow { font-size: 11px; letter-spacing: 2px; color: var(--gold); }
+    h1 { font: normal clamp(30px, 5vw, 44px)/1.2 Georgia, serif; margin: 10px 0; }
+    p { margin: 10px 0; }
+    .empty-state {
+      margin-top: 24px;
+      padding: 48px 24px;
+      text-align: center;
+      background: #251a1d;
+      border: 1px solid #564035;
+      border-radius: 10px;
+    }
+    .emblem { display: block; color: var(--gold); font-size: 40px; line-height: 1.3; }
+    h2 { font: normal clamp(23px, 4vw, 30px)/1.3 Georgia, serif; margin: 18px 0 12px; }
+    .empty-state p { color: var(--muted); max-width: 480px; margin: 0 auto 24px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 20px;
+      border: 1px solid #94764f;
+      border-radius: 6px;
+      background: var(--green);
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .button:hover { background: #244b39; }
+    footer { padding: 24px; color: var(--muted); text-align: center; font-size: 12px; }
+    @media (max-width: 600px) {
+      .topbar { padding: 16px; }
+      nav { gap: 16px; }
+      main { margin-top: 20px; padding: 0 14px; }
+      .hero { padding: 22px; }
+      .empty-state { padding: 36px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">⚔ The Forbidden Case</a>
+    <nav aria-label="Club navigation">
+      <a href="index.html">Bookshelf</a>
+      <a href="upcoming-books.html">Upcoming books</a>
+      <a href="events.html" aria-current="page">Events</a>
+      <a href="tavern.html">Tavern</a>
+      <a href="fan-art.html">Fan Art</a>
+    </nav>
+  </header>
+  <main>
+    <!-- Page heading and introduction -->
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">GATHER WITH KINDRED SPIRITS</p>
+      <h1 id="page-title">Club events</h1>
+      <p>Bookish gatherings, shared adventures, and good company.</p>
+    </section>
+
+    <!-- Replace this empty state with event cards when events are announced. -->
+    <section class="empty-state" aria-labelledby="events-heading">
+      <span class="emblem" aria-hidden="true">⚔</span>
+      <h2 id="events-heading">No upcoming events yet</h2>
+      <p>When our next gathering is announced, you’ll find the details right here. Until then, join the conversation in the Tavern.</p>
+      <a class="button" href="tavern.html">Visit the Tavern</a>
+    </section>
+  </main>
+  <footer>
+    The Forbidden Case · <a href="rules.html">Club rules &amp; privacy</a>
+  </footer>
+</body>
+</html>

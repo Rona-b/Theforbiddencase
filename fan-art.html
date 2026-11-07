@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fan Art & Creations — The Forbidden Case</title>
+    <link rel="icon" href="images/emblem.svg" />
+    <link rel="stylesheet" href="fan-art.css" />
+    <script src="fan-art.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">⚔ <span>The Forbidden Case</span></a>
+      <nav aria-label="Club navigation">
+        <a href="index.html">Bookshelf</a
+        ><a href="discussions.html">Discussions</a
+        ><a href="tavern.html">Tavern</a><a href="profile.html">My profile</a>
+      </nav>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="eyebrow">OUR COMMUNITY</p>
+        <a class="selected" href="fan-art.html" aria-current="page"
+          >✧ Fan Art & Creations</a
+        ><a href="current-read.html">☾ Current read</a
+        ><a href="events.html">⚔ Club gatherings</a
+        ><a href="members.html">❦ Our readers</a
+        ><a href="rules.html">Community promise</a>
+        <div class="note">
+          <h3>A little inspiration</h3>
+          <p>
+            Sketches, paintings, crafts, costumes, and the worlds our books
+            inspire.
+          </p>
+          <p>Credit artists, respect their permissions, and mark spoilers.</p>
+        </div>
+      </aside>
+      <main>
+        <section class="hero">
+          <p class="eyebrow">MADE BY OUR READERS</p>
+          <h1>Fan Art & Creations</h1>
+          <p>
+            A space to share what you make, find inspiration, and cheer each
+            other on.
+          </p>
+        </section>
+        <p id="status" role="status">Connecting to your club…</p>
+        <div id="accountNotice" hidden></div>
+        <!-- EDIT THIS PAGE: edit the headings, introductory text, and composer labels. Keep functional IDs. -->
+        <section class="composer panel" aria-labelledby="composerHeading">
+          <h2 id="composerHeading">Share something creative</h2>
+          <form id="postForm">
+            <label for="caption">Your story, caption, or inspiration link</label
+            ><textarea
+              id="caption"
+              maxlength="1500"
+              rows="3"
+              placeholder="What have you been creating? Credit the artist if sharing their work."
+            ></textarea
+            ><label for="artFile">Add a photo, GIF, or video</label
+            ><input
+              id="artFile"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"
+            />
+            <div id="attachment" hidden></div>
+            <p class="hint">
+              Images & GIFs up to 8 MB · MP4/WebM videos up to 20 MB. Links open
+              the original post.
+            </p>
+            <div class="composer-actions">
+              <button type="button" id="emoji">Add 😊</button
+              ><button class="primary" id="publish" type="submit">
+                Share with the club
+              </button>
+            </div>
+          </form>
+        </section>
+        <div class="feed-heading">
+          <h2>The community feed</h2>
+          <span>Newest first</span>
+        </div>
+        <section id="feed" aria-label="Member artwork posts"></section>
+        <button id="older" hidden>Load older posts</button>
+      </main>
+      <aside class="rightbar">
+        <section class="panel">
+          <p class="eyebrow">CREATE • CONNECT • ENCOURAGE</p>
+          <h2>Every kind of creativity belongs.</h2>
+          <p>
+            Post your art, share the inspiration behind it, and start a
+            conversation in the comments.
+          </p>
+        </section>
+        <section class="note">
+          <h3>Make room for the artist</h3>
+          <p>
+            Be kind with feedback. Ask before offering critique. Avoid unmarked
+            spoilers.
+          </p>
+        </section>
+      </aside>
+    </div>
+    <footer>
+      © <span id="year"></span> The Forbidden Case ·
+      <a href="rules.html">18+ membership & privacy</a>
+    </footer>
+  </body>
+</html>

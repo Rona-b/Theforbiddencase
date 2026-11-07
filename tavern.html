@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>The Tavern — The Forbidden Case</title>
+    <link rel="icon" href="images/emblem.svg" />
+    <link rel="stylesheet" href="tavern.css" />
+    <script src="tavern.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        >⚔
+        <span>The Forbidden Case</span>
+      </a>
+      <nav aria-label="Club navigation">
+        <a href="index.html">Bookshelf</a>
+        <a href="discussions.html">Discussions</a>
+        <a href="fan-art.html">Fan Art</a>
+        <a href="profile.html">My profile</a>
+      </nav>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="eyebrow">OUR COMMUNITY</p>
+        <a class="selected" href="tavern.html" aria-current="page"
+          >✧ The Tavern</a
+        >
+        <a href="current-read.html">☾ Current read</a>
+        <a href="events.html">⚔ Club gatherings</a>
+        <a href="members.html">❦ Our readers</a>
+        <a href="rules.html">Community promise</a>
+        <div class="note">
+          <h3>The club promise</h3>
+          <p>Be kind, welcome different opinions, and mark your spoilers.</p>
+        </div>
+      </aside>
+      <main>
+        <section class="hero">
+          <p class="eyebrow">PULL UP A CHAIR</p>
+          <h1>The Tavern</h1>
+          <p>Chat about your reading, share a thought, or reply to a friend.</p>
+        </section>
+        <p id="status" role="status">Connecting to your club…</p>
+        <div id="accountNotice" hidden></div>
+        <!-- EDIT THIS PAGE: edit the headings, introductory text,
+  and composer labels. Keep functional IDs. -->
+        <section class="composer panel" aria-labelledby="composerHeading">
+          <h2 id="composerHeading">Start a conversation</h2>
+          <form id="postForm">
+            <label for="caption">What would you like to share?</label>
+            <textarea
+              id="caption"
+              maxlength="1500"
+              rows="3"
+              placeholder="Share a thought, a question, or a bookish discovery…"
+            >
+            </textarea>
+            <label class="spoiler-check">
+              <input type="checkbox" id="postSpoiler" /> This post contains
+              spoilers</label
+            >
+            <label for="artFile">Add a photo, GIF, or video</label>
+            <input
+              id="artFile"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"
+            />
+            <div id="attachment" hidden></div>
+            <p class="hint">
+              Images & GIFs up to 8 MB · MP4/WebM videos up to 20 MB. Links open
+              the original post.
+            </p>
+            <div class="composer-actions">
+              <button type="button" id="emoji">Add 😊</button>
+              <button class="primary" id="publish" type="submit">
+                Share with the club
+              </button>
+            </div>
+          </form>
+        </section>
+        <div class="feed-heading">
+          <h2>Tavern conversations</h2>
+          <span>Newest first</span>
+        </div>
+        <section id="feed" aria-label="Member artwork posts"></section>
+        <button id="older" hidden>Load older posts</button>
+      </main>
+      <aside class="rightbar">
+        <section class="panel">
+          <p class="eyebrow">READ • CHAT • CONNECT</p>
+          <h2>Keep the surprises safe.</h2>
+          <p>
+            Tick the spoiler box before sharing plot details. Readers choose
+            when to reveal marked posts and replies.
+          </p>
+          <p>
+            You can react to a post or a reply. Select your reaction again to
+            remove it.
+          </p>
+        </section>
+      </aside>
+    </div>
+    <footer>
+      © <span id="year"> </span> The Forbidden Case ·
+      <a href="rules.html">18+ membership & privacy</a>
+    </footer>
+  </body>
+</html>

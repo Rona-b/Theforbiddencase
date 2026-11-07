@@ -1,0 +1,6 @@
+Artwork generated with the built-in image-generation tool.
+Asset: images/library-backdrop.png, 1536 × 1024 pixels.
+The book cover ornament and browser emblem are SVG vector assets. Book titles and authors are real HTML text. Official cover art is not included.
+
+Generation prompt:
+Create a high resolution 1536x1024 landscape decorative background asset for an ornate fantasy romance book club website. Straight-on view of an old dark walnut bookcase in an enchanted library, richly carved wooden frame with antique gold decorative filigree, trailing dark green ivy and a few deep burgundy roses at the upper corners, warm amber candles and brass lanterns along far left and right edges. Wide spacious empty recessed wooden shelves in center, dark brown wood grain, no books in the center and no parchment or posters. Cozy cinematic warm lighting, sophisticated painterly photorealistic detail, sharp wood texture and metal ornament. Dark forest green and burgundy accents. This is a website backdrop for editable HTML elements to be placed on top: keep central 80 percent uncluttered, low contrast dark wood. Absolutely no lettering, text, titles, logos, UI, book covers, or watermarks.
